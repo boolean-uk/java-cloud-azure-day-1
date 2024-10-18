@@ -10,7 +10,7 @@
 
 1. Fork this repository
 2. Clone your fork to your machine
-   
+
 Optional Extras (we'll look at these next week)
 
 3. Install the [Microsoft Azure Storage Explorer](https://azure.microsoft.com/en-us/products/storage/storage-explorer/)
@@ -19,7 +19,7 @@ Optional Extras (we'll look at these next week)
 For this exercise you should get a full stack web application working ready to deploy to Azure next week
 
 ## Core Activity
- 
+
 ~~You are going to deploy a simple API to Azure.~~  Create a library of something, this could be books, music, video games, tools, spoons or something else more obscure. You want to have multiple endpoints that are to linked informtion (similar to Books, Authors and Publishers).
 
 - Back end API using Java and the Spring Boot Application starter package
