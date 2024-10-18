@@ -10,25 +10,29 @@
 
 1. Fork this repository
 2. Clone your fork to your machine
+   
+Optional Extras (we'll look at these next week)
+
 3. Install the [Microsoft Azure Storage Explorer](https://azure.microsoft.com/en-us/products/storage/storage-explorer/)
 4. Run the [Microsoft Azurite Storage Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio%2Cblob-storage)
 
-For this exercise you should get a full stack web application working in Azure.
+For this exercise you should get a full stack web application working ready to deploy to Azure next week
 
 ## Core Activity
  
-You are going to deploy a simple API to Azure. You can create something simple and new or you may use an existing application, e.g. the cinema challenge and build a simple front end using technology you choose. You should build using the following approach:
+~~You are going to deploy a simple API to Azure.~~  Create a library of something, this could be books, music, video games, tools, spoons or something else more obscure. You want to have multiple endpoints that are to linked informtion (similar to Books, Authors and Publishers).
 
-- Back end API using Java and the Spring Boot Application starter package with at least 1 endpoint
-- Database using PostgresSQL hosted in Azure (you can start out using a Neon one and then convert it later)
+- Back end API using Java and the Spring Boot Application starter package
+- Database using PostgreSQL hosted on ~~Azure~~ Neon (we can point it at an Azure one later)
 
 ## Extension Activity
 
-- Create a front end using either `React` or `Angular` which makes at least one call to the API endpoint.  Your frontend repository should be pushed [here](https://github.com/boolean-uk/java-cloud-azure-day-1-frontend) and deployed to Azure.
+- Create a front end using either `React` or `Angular` which calls the API endpoints.  Your frontend repository should ideally be pushed [here](https://github.com/boolean-uk/java-cloud-azure-day-1-frontend) ~~and deployed to Azure~~.
 - Add any extended functionality you can think of to your API.
 
-## Notes
+The notes below are not needed until we start looking at Azure in depth.
 
+## Notes
 
 A simpler deployment stategy using a JAR file is found here: [https://learn.microsoft.com/en-us/azure/spring-apps/basic-standard/how-to-launch-from-source](https://learn.microsoft.com/en-us/azure/spring-apps/basic-standard/how-to-launch-from-source) you will need to install the Azure CLI tool to make this happen.
 
