@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,10 +18,10 @@ public class Workout {
     private String workoutType;
     private LocalDateTime workoutDate;
 
-    @Column(columnDefinition = "jsonb")
-    private String exercises;
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Exercise> exercises;
 
-    public Workout(String workoutType, String exercises) {
+    public Workout(String workoutType, List<Exercise> exercises) {
         this.workoutType = workoutType;
         this.exercises = exercises;
     }
