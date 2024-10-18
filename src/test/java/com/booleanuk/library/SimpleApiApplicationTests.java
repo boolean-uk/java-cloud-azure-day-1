@@ -1,4 +1,4 @@
-package com.booleanuk.simpleapi;
+package com.booleanuk.library;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
