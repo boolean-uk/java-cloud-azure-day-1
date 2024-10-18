@@ -1,4 +1,6 @@
 package com.booleanuk.simpleapi.responses;
 
-public class SongResponse {
+import com.booleanuk.simpleapi.model.Song;
+
+public class SongResponse extends Response<Song> {
 }

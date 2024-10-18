@@ -1,4 +1,6 @@
 package com.booleanuk.simpleapi.responses;
 
-public class GenreResponse {
+import com.booleanuk.simpleapi.model.Genre;
+
+public class GenreResponse extends Response<Genre> {
 }

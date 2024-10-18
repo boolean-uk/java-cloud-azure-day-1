@@ -1,4 +1,8 @@
 package com.booleanuk.simpleapi.responses;
 
-public class AlbumListResponse {
+import com.booleanuk.simpleapi.model.Album;
+
+import java.util.List;
+
+public class AlbumListResponse extends Response<List<Album>> {
 }

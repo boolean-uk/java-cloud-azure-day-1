@@ -1,4 +1,8 @@
 package com.booleanuk.simpleapi.responses;
 
-public interface GenreListResponse {
+import com.booleanuk.simpleapi.model.Genre;
+
+import java.util.List;
+
+public class GenreListResponse extends Response<List<Genre>> {
 }

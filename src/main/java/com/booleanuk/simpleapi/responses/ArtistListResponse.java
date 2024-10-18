@@ -4,5 +4,5 @@ import com.booleanuk.simpleapi.model.Artist;
 
 import java.util.List;
 
-public class ArtistsResponse extends Response<List<Artist>> {
+public class ArtistListResponse extends Response<List<Artist>> {
 }
