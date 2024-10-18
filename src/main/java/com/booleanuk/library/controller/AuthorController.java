@@ -8,6 +8,7 @@ import com.booleanuk.library.responses.AuthorResponse;
 import com.booleanuk.library.responses.ErrorResponse;
 import com.booleanuk.library.responses.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,12 @@ public class AuthorController {
     public ResponseEntity<AuthorListResponse> getAll(){
         AuthorListResponse authorListResponse = new AuthorListResponse();
         authorListResponse.set(this.authors.findAll());
-        return new ResponseEntity<>(authorListResponse, HttpStatus.OK);
+
+        // To avoid some CORS problem
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(authorListResponse, headers, HttpStatus.OK);
     }
 
     @PostMapping
@@ -37,7 +43,11 @@ public class AuthorController {
         AuthorResponse authorResponse = new AuthorResponse();
         authorResponse.set(newAuthor);
 
-        return new ResponseEntity<>(authorResponse, HttpStatus.CREATED);
+        // To avoid some CORS problem
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(authorResponse, headers, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
@@ -51,7 +61,11 @@ public class AuthorController {
         AuthorResponse authorResponse = new AuthorResponse();
         authorResponse.set(author);
 
-        return new ResponseEntity<>(authorResponse, HttpStatus.OK);
+        // To avoid some CORS problem
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(authorResponse, headers, HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
@@ -64,7 +78,12 @@ public class AuthorController {
         AuthorResponse authorResponse = new AuthorResponse();
         authorResponse.set(toDelete);
         this.authors.delete(toDelete);
-        return new ResponseEntity<>(authorResponse, HttpStatus.OK);
+
+        // To avoid some CORS problem
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(authorResponse, headers, HttpStatus.OK);
     }
 
     @PutMapping("{id}")
@@ -81,7 +100,10 @@ public class AuthorController {
         AuthorResponse authorResponse = new AuthorResponse();
         authorResponse.set(this.authors.save(toUpdate));
 
-        return new ResponseEntity<>(authorResponse, HttpStatus.CREATED);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(authorResponse, headers, HttpStatus.CREATED);
     }
 
 }

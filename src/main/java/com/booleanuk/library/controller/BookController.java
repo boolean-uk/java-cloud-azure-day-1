@@ -7,6 +7,7 @@ import com.booleanuk.library.repository.AuthorRepository;
 import com.booleanuk.library.repository.BookRepository;
 import com.booleanuk.library.responses.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,12 @@ public class BookController {
     public ResponseEntity<BookListResponse> getAllBooks(){
         BookListResponse bookListResponse = new BookListResponse();
         bookListResponse.set(this.books.findAll());
-        return new ResponseEntity<>(bookListResponse, HttpStatus.OK);
+
+        // To avoid some CORS problem
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(bookListResponse, headers, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
@@ -39,7 +45,12 @@ public class BookController {
 
         BookResponse bookResponse = new BookResponse();
         bookResponse.set(toReturn);
-        return new ResponseEntity<>(bookResponse, HttpStatus.OK);
+
+        // To avoid some CORS problem
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(bookResponse, headers, HttpStatus.OK);
     }
 
     @PostMapping
@@ -62,7 +73,12 @@ public class BookController {
 
         BookResponse bookResponse = new BookResponse();
         bookResponse.set(newBook);
-        return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
+
+        // To avoid some CORS problem
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(bookResponse, headers, HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
@@ -76,7 +92,12 @@ public class BookController {
         BookResponse bookResponse = new BookResponse();
         bookResponse.set(toDelete);
         this.books.delete(toDelete);
-        return new ResponseEntity<>(bookResponse, HttpStatus.OK);
+
+        // To avoid some CORS problem
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(bookResponse, headers, HttpStatus.OK);
     }
 
     @PutMapping("{id}")
@@ -95,7 +116,11 @@ public class BookController {
         BookResponse bookResponse = new BookResponse();
         bookResponse.set(this.books.save(toUpdate));
 
-        return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
+        // To avoid some CORS problem
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(bookResponse, headers, HttpStatus.CREATED);
     }
 
 }
