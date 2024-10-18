@@ -26,6 +26,10 @@ public class Room {
     @JsonIgnoreProperties("room")
     private List<Penguin> penguins;
 
+    @OneToMany(mappedBy = "room")
+    @JsonIgnoreProperties("room")
+    private List<Game> games;
+
     @Column
     private String name;
 
