@@ -46,7 +46,8 @@ public class ThingController {
 
   @DeleteMapping("{id}")
   public ResponseEntity<Thing> delete(@PathVariable int id) {
-    var deleted = this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    var deleted = this.repository.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     this.repository.deleteById(id);
     return ResponseEntity.ok(deleted);
   }
