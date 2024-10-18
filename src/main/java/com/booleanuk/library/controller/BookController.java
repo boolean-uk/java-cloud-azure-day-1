@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("books")
 public class BookController {
@@ -27,11 +28,7 @@ public class BookController {
         BookListResponse bookListResponse = new BookListResponse();
         bookListResponse.set(this.books.findAll());
 
-        // To avoid some CORS problem
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
-
-        return new ResponseEntity<>(bookListResponse, headers, HttpStatus.OK);
+        return new ResponseEntity<>(bookListResponse, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
@@ -46,11 +43,7 @@ public class BookController {
         BookResponse bookResponse = new BookResponse();
         bookResponse.set(toReturn);
 
-        // To avoid some CORS problem
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
-
-        return new ResponseEntity<>(bookResponse, headers, HttpStatus.OK);
+        return new ResponseEntity<>(bookResponse, HttpStatus.OK);
     }
 
     @PostMapping
@@ -72,13 +65,9 @@ public class BookController {
         this.authors.save(author);
 
         BookResponse bookResponse = new BookResponse();
-        bookResponse.set(newBook);
+        bookResponse.set(newBook);;
 
-        // To avoid some CORS problem
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
-
-        return new ResponseEntity<>(bookResponse, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
@@ -93,11 +82,7 @@ public class BookController {
         bookResponse.set(toDelete);
         this.books.delete(toDelete);
 
-        // To avoid some CORS problem
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
-
-        return new ResponseEntity<>(bookResponse, headers, HttpStatus.OK);
+        return new ResponseEntity<>(bookResponse, HttpStatus.OK);
     }
 
     @PutMapping("{id}")
@@ -116,11 +101,8 @@ public class BookController {
         BookResponse bookResponse = new BookResponse();
         bookResponse.set(this.books.save(toUpdate));
 
-        // To avoid some CORS problem
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
 
-        return new ResponseEntity<>(bookResponse, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
     }
 
 }

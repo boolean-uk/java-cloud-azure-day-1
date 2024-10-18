@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("authors")
 public class AuthorController {
@@ -25,11 +26,9 @@ public class AuthorController {
         AuthorListResponse authorListResponse = new AuthorListResponse();
         authorListResponse.set(this.authors.findAll());
 
-        // To avoid some CORS problem
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
 
-        return new ResponseEntity<>(authorListResponse, headers, HttpStatus.OK);
+
+        return new ResponseEntity<>(authorListResponse, HttpStatus.OK);
     }
 
     @PostMapping
@@ -43,11 +42,7 @@ public class AuthorController {
         AuthorResponse authorResponse = new AuthorResponse();
         authorResponse.set(newAuthor);
 
-        // To avoid some CORS problem
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
-
-        return new ResponseEntity<>(authorResponse, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(authorResponse, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
@@ -61,11 +56,7 @@ public class AuthorController {
         AuthorResponse authorResponse = new AuthorResponse();
         authorResponse.set(author);
 
-        // To avoid some CORS problem
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
-
-        return new ResponseEntity<>(authorResponse, headers, HttpStatus.OK);
+        return new ResponseEntity<>(authorResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
@@ -79,11 +70,7 @@ public class AuthorController {
         authorResponse.set(toDelete);
         this.authors.delete(toDelete);
 
-        // To avoid some CORS problem
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
-
-        return new ResponseEntity<>(authorResponse, headers, HttpStatus.OK);
+        return new ResponseEntity<>(authorResponse, HttpStatus.OK);
     }
 
     @PutMapping("{id}")
@@ -100,10 +87,7 @@ public class AuthorController {
         AuthorResponse authorResponse = new AuthorResponse();
         authorResponse.set(this.authors.save(toUpdate));
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
-
-        return new ResponseEntity<>(authorResponse, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(authorResponse, HttpStatus.CREATED);
     }
 
 }
