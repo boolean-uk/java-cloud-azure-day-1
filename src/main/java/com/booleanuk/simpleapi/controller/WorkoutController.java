@@ -33,7 +33,9 @@ public class WorkoutController {
 
     @PostMapping
     public ResponseEntity<Workout> createWorkout(@RequestBody Workout workout) {
-        return ResponseEntity.ok(this.workoutRepository.save(workout));
+        workout.getExercises().forEach(exercise -> exercise.setWorkout(workout));
+        Workout savedWorkout = this.workoutRepository.save(workout);
+        return ResponseEntity.ok(savedWorkout);
     }
 
     @PutMapping("/{id}")
