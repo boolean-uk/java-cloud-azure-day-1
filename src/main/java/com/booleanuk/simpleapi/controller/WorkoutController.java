@@ -41,15 +41,22 @@ public class WorkoutController {
     @PutMapping("/{id}")
     public ResponseEntity<Workout> updateWorkout(@PathVariable int id, @RequestBody Workout workoutBody) {
         return this.workoutRepository.findById(id)
-                .map(workout -> {
-                    workout.setWorkoutType(workoutBody.getWorkoutType());
-                    workout.setWorkoutDate(workoutBody.getWorkoutDate());
-                    workout.setExercises(workoutBody.getExercises());
-                    Workout updatedWorkout = this.workoutRepository.save(workout);
+                .map(existingWorkout -> {
+                    existingWorkout.setWorkoutType(workoutBody.getWorkoutType());
+                    existingWorkout.setWorkoutDate(workoutBody.getWorkoutDate());
+
+                    existingWorkout.getExercises().clear();
+                    workoutBody.getExercises().forEach(exercise -> {
+                        exercise.setWorkout(existingWorkout);
+                        existingWorkout.getExercises().add(exercise);
+                    });
+
+                    Workout updatedWorkout = this.workoutRepository.save(existingWorkout);
                     return ResponseEntity.ok(updatedWorkout);
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteWorkout(@PathVariable int id) {
