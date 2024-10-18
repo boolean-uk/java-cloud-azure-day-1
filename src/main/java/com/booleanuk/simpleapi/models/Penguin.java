@@ -1,10 +1,14 @@
 package com.booleanuk.simpleapi.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,6 +21,11 @@ public class Penguin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "penguin_id")
+    @JsonIncludeProperties(value = {"username", "meetable", "visitor", "villainous"})
+    private Room room;
 
     @Column
     private String username;
