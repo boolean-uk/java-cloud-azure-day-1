@@ -20,7 +20,7 @@ For this exercise you should get a full stack web application working ready to d
 
 ## Core Activity
  
-~~You are going to deploy a simple API to Azure.~~  Create a library of something, this could be books, music, video games, tools, spoons or something else more obscure. You want to have multiple endpoints that are to linked informtion (similar to Books, Authors and Publishers).
+~~You are going to deploy a simple API to Azure.~~  Create a library of something, this could be books, music, video games, tools, spoons or something else more obscure. You want to have multiple endpoints that are to linked informtion (similar to Books, Games and Publishers).
 
 - Back end API using Java and the Spring Boot Application starter package
 - Database using PostgreSQL hosted on ~~Azure~~ Neon (we can point it at an Azure one later)
