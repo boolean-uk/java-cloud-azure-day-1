@@ -1,5 +1,6 @@
 package com.booleanuk.simpleapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +13,10 @@ import java.util.Objects;
 @Table(name = "books")
 @Getter
 @Setter
-public class Book extends Borrowable {
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected int id;
 
     @Column(name = "title")
     private String title;
@@ -20,31 +24,23 @@ public class Book extends Borrowable {
     @Column(name = "author")
     private String author;
 
-    @Column(name = "publisher")
-    private String publisher;
+    @Column(name = "is_borrowed")
+    private boolean isBorrowed;
 
-    @Column(name = "genre")
-    private String genre;
-
-    public Book(String title, String author, String publisher, String genre) {
-        super();
-        this.setType("book");
+    public Book(String title, String author, boolean isBorrowed) {
         this.title = title;
         this.author = author;
-        this.publisher = publisher;
-        this.genre = genre;
+        this.isBorrowed = isBorrowed;
     }
 
     public Book(int id) {
-        super(id);
-        this.setType("book");
+        this.id = id;
     }
 
-    public boolean isItemValid() {
+    @JsonIgnore
+    public boolean isValid() {
         return !(StringUtils.isBlank(title)
-                || StringUtils.isBlank(author)
-                || StringUtils.isBlank(publisher)
-                || StringUtils.isBlank(genre));
+                || StringUtils.isBlank(author));
     }
 
     @Override
@@ -57,15 +53,13 @@ public class Book extends Borrowable {
         }
         Book book = (Book) o;
         return Objects.equals(id, book.id)
-                && Objects.equals(type, book.type)
                 && Objects.equals(title, book.title)
                 && Objects.equals(author, book.author)
-                && Objects.equals(publisher, book.publisher)
-                && Objects.equals(genre, book.genre);
+                && Objects.equals(isBorrowed, book.isBorrowed);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, title, author, publisher, genre);
+        return Objects.hash(id, title, author, isBorrowed);
     }
 }
